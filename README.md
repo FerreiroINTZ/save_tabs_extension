@@ -1,5 +1,5 @@
 # Regra de uso
-abas apras da site "whatsapp" ficam no primeiro como "preview"
+abas atras da site "whatsapp" ficam no primeiro como "preview"
 
 Abas apos o site "newtab" ficam como "outros"
 

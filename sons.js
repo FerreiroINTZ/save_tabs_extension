@@ -12,3 +12,35 @@ export default function slw(element, type){
         element.addEventListener("mousedown", () => audio2.play())
     }
 }
+
+const audiosOptions = [
+    "./sounds/ui-button-click.wav", 
+    "./sounds/hover.wav", 
+    "./sounds/projects-hover.mp3"
+]
+
+export function addSoundOnElement(className, audioOption){
+    const elements = document.getElementsByClassName(className)
+
+    const audio = new Audio(audiosOptions[audioOption])
+    audio.volume = .4
+
+    for(let element of elements){
+        if(element.tagName == "BUTTON"){
+            const audio2 = new Audio(audiosOptions[1])
+            audio2.volume = .4
+            element.addEventListener("mouseenter", () =>{
+            audio2.play()
+        })
+            const audio3 = new Audio(audiosOptions[audioOption])
+            audio3.volume = .4
+            element.addEventListener("mousedown", () =>{
+            audio3.play()
+        })    
+        }else{
+            element.addEventListener("mouseenter", () =>{
+                audio.play()
+            })
+        }
+    }
+}

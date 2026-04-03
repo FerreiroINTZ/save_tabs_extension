@@ -1,21 +1,40 @@
-import Utils from "./util.js"
-import Sounds from "./sons.js"
+import Controller from "./controller.js"
+import Sounds, {addSoundOnElement} from "./sons.js"
 
+
+// elements ================================================
 const btn = document.getElementById('fetchBtn')
 const listTag = document.getElementById("list")
 const totaisTag = document.getElementById("totais")
 const openWindows = document.getElementById("openWindows")
+const clearBtn = document.getElementById("clear")
+// ========================================
 
-Sounds(btn, "btn")
 
+const slw = new Controller(listTag, totaisTag)
+
+
+// listeners ==========================================
 btn.addEventListener("click", () =>{
-    Utils.structureData()
+    slw.structureData()
 })
 
 openWindows.addEventListener("click", () =>{
-    Utils.openWindows()
+    slw.openWindows()
 })
 
-// Utils.structureData()
+clearBtn.addEventListener("click", () =>{
+    slw.clearTabs()
+})
+// ========================================
 
-Utils.listTabs(listTag, totaisTag)
+// basic actions
+await slw.listTabs(listTag, totaisTag)
+// =========================================
+
+// sounds =============================================
+addSoundOnElement("btnAudio", 0)
+addSoundOnElement("preview", 0)
+addSoundOnElement("viewing", 0)
+addSoundOnElement("others", 0)
+// ========================================

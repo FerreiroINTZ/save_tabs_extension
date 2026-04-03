@@ -16,7 +16,17 @@ body{
 #title{
     display: flex;
     gap: 10px;
-    
+}
+
+#actions{
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+
+    #clear{
+        background: #442323;
+    }
+
     button{
         background: #404040;
         color: white;
@@ -44,6 +54,8 @@ ul{
     grid-template-columns: 1fr 1fr;
     gap: 10px;
     margin-top: 10px;
+    max-height: 500px;
+    overflow-y: auto;
 
     .preview{
         background: #2f4149;
