@@ -5,8 +5,6 @@ import Sounds from "./sons.js"
 class Controller{
 
     states = ["preview", "viewing", "others"]
-    // sites disponiveis
-    // sitesAvailable = ["github", "chatgpt", "uol"]
     popipId = null
 
     constructor(listTag, totaisTag){
@@ -14,7 +12,13 @@ class Controller{
         this.totaisTag = totaisTag
     }
 
+    // ao atualizar no storage ele atualiza a propriedade do calsse, tambem
+    async setSitesAvailableProperty(vall){
+        await chrome.storage.local.set({sitesAvailable: vall})
+        this.sitesAvailable = vall
+    }
 
+    // pega os valores da propriedade no sotrage
     async getSitesAvailable(){
         const {sitesAvailable: data} = await chrome.storage.local.get("sitesAvailable")
         console.log("data", data)
@@ -26,19 +30,23 @@ class Controller{
         return data
     }
 
+    // deleta uma propriedae
     async deleteWebSite(vall){
         const newSites = this.sitesAvailable
         console.log("Deletar: ", this.sitesAvailable)
         newSites.shift(vall)
-        await chrome.storage.local.set({sitesAvailable: newSites})
+        await this.setSitesAvailableProperty(newSites)
         return newSites
     }
 
+    // adiciona uma propriedade
     async addWebSite(vall){
+        if(!vall || this.sitesAvailable.includes(vall)){
+            return
+        }
         const newSites = this.sitesAvailable
         newSites.push(vall)
-        await chrome.storage.local.set({sitesAvailable: newSites})
-        this.sitesAvailable = newSites
+        await this.setSitesAvailableProperty(newSites)
         return newSites
     }
 

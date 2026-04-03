@@ -46,6 +46,15 @@ async function generateList(){
     }
 }
 
+input.addEventListener("keydown", async event =>{
+    if(event.code == "Enter"){
+        await slw.addWebSite(input.value)
+        event.target.value = ""
+        console.log(event)
+        generateList()
+    }
+})
+
 addItem.addEventListener("click", async () =>{
     await slw.addWebSite(input.value)
     generateList()
