@@ -19,12 +19,13 @@ body{
     label{
         font-size: 20px;
         font-weight: 600;
+        color: #c0c0c0;
     }
 
     button{
         margin-left: 10px;
-        --color: rgb(57, 167, 108);
-        background: rgb(31, 54, 42);
+        --color: rgb(115, 156, 134);
+        background: rgb(23, 34, 28);
         border: 1px solid var(--color);
         padding: 10px;
         border-radius: 3px;
@@ -42,7 +43,7 @@ body{
     input{
         background: none;
         border: none;
-        border-bottom: 1px solid white;
+        border-bottom: 1px solid #c0c0c0;
         outline: none;
         color: white;
         font-size: 20px;
@@ -98,6 +99,7 @@ ul{
             flex-grow: 1;
             font-size: 20px;
             font-weight: 600;
+            color: #e0e0e0;
         }
     }
 }

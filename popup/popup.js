@@ -4,16 +4,8 @@ const lista = document.getElementById("lista")
 const input = document.getElementById("inputItem")
 const addItem = document.getElementById("addItem")
 
-const teste = document.getElementById("teste")
-
-
 const slw = new Controller()
 
-
-// teste!
-teste.addEventListener("click", () =>{
-    slw.x()
-})
 
 async function generateList(){
     const sites = await slw.getSitesAvailable()

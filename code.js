@@ -1,3 +1,5 @@
+// chrome://inspect => da pra debugar poppups nele
+
 import Controller from "./controller.js"
 import Sounds, {addSoundOnElement} from "./sons.js"
 
@@ -9,12 +11,6 @@ const totaisTag = document.getElementById("totais")
 const openWindows = document.getElementById("openWindows")
 const clearBtn = document.getElementById("clear")
 const btnSitesAvailable = document.getElementById("sitesAvailable")
-
-const teste = document.getElementById("teste")
-teste.addEventListener("click", async () =>{
-    const data = await chrome.storage.local.get("slw")
-    console.log(data)
-})
 // ========================================
 
 
