@@ -9,6 +9,12 @@ const totaisTag = document.getElementById("totais")
 const openWindows = document.getElementById("openWindows")
 const clearBtn = document.getElementById("clear")
 const btnSitesAvailable = document.getElementById("sitesAvailable")
+
+const teste = document.getElementById("teste")
+teste.addEventListener("click", async () =>{
+    const data = await chrome.storage.local.get("slw")
+    console.log(data)
+})
 // ========================================
 
 

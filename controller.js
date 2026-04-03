@@ -5,7 +5,8 @@ import Sounds from "./sons.js"
 class Controller{
 
     states = ["preview", "viewing", "others"]
-    sitesAvailable = ["github", "chatgpt", "uol"]
+    // sites disponiveis
+    // sitesAvailable = ["github", "chatgpt", "uol"]
     popipId = null
 
     constructor(listTag, totaisTag){
@@ -13,19 +14,31 @@ class Controller{
         this.totaisTag = totaisTag
     }
 
-    // listaDeSites = ["github"]
-    // states = ["preview", "viewing", "others"]
-    // currState = states[0]
 
-    getSitesAvailable(){
-        return this.sitesAvailable
+    async getSitesAvailable(){
+        const {sitesAvailable: data} = await chrome.storage.local.get("sitesAvailable")
+        console.log("data", data)
+        if(!data){
+            this.sitesAvailable = []
+            return []
+        }
+        this.sitesAvailable = data
+        return data
     }
-    deleteWebSite(vall){
-        const newSites = this.sitesAvailable.shift(vall)
+
+    async deleteWebSite(vall){
+        const newSites = this.sitesAvailable
+        console.log("Deletar: ", this.sitesAvailable)
+        newSites.shift(vall)
+        await chrome.storage.local.set({sitesAvailable: newSites})
         return newSites
     }
-    addWebSite(vall){
-        const newSites = this.sitesAvailable.push(vall)
+
+    async addWebSite(vall){
+        const newSites = this.sitesAvailable
+        newSites.push(vall)
+        await chrome.storage.local.set({sitesAvailable: newSites})
+        this.sitesAvailable = newSites
         return newSites
     }
 
