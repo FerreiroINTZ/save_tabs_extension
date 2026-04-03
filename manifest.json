@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "teste",
     "version": "1.0",
-    "permissions": ["tabs", "storage"],
+    "permissions": ["tabs", "storage", "windows"],
     "action": {
         "default_popup": "index.html",
         "default_title": "slw"

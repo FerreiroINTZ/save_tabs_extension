@@ -8,6 +8,7 @@ const listTag = document.getElementById("list")
 const totaisTag = document.getElementById("totais")
 const openWindows = document.getElementById("openWindows")
 const clearBtn = document.getElementById("clear")
+const btnSitesAvailable = document.getElementById("sitesAvailable")
 // ========================================
 
 
@@ -25,6 +26,10 @@ openWindows.addEventListener("click", () =>{
 
 clearBtn.addEventListener("click", () =>{
     slw.clearTabs()
+})
+
+btnSitesAvailable.addEventListener("click", () =>{
+    slw.editSitesAvailable()
 })
 // ========================================
 

@@ -5,7 +5,8 @@ import Sounds from "./sons.js"
 class Controller{
 
     states = ["preview", "viewing", "others"]
-    sitesAvailable = ["github", "chatgpt"]
+    sitesAvailable = ["github", "chatgpt", "uol"]
+    popipId = null
 
     constructor(listTag, totaisTag){
         this.listTag = listTag
@@ -15,6 +16,18 @@ class Controller{
     // listaDeSites = ["github"]
     // states = ["preview", "viewing", "others"]
     // currState = states[0]
+
+    getSitesAvailable(){
+        return this.sitesAvailable
+    }
+    deleteWebSite(vall){
+        const newSites = this.sitesAvailable.shift(vall)
+        return newSites
+    }
+    addWebSite(vall){
+        const newSites = this.sitesAvailable.push(vall)
+        return newSites
+    }
 
     // pega, salve e atualiza o poppup com os dados
     async getTabs(){
@@ -164,6 +177,23 @@ class Controller{
     async clearTabs(){
         await chrome.storage.local.remove(["data"])
         await this.listTabs()
+    }
+
+    async editSitesAvailable(){
+        // se a janeja la existir ele nao cria outra
+        if(this.popipId){
+            const slw = await chrome.windows.get(this.popipId)
+            console.log("slw")
+            console.log(slw)
+            return 
+        }
+        const {id: windowId} = await chrome.windows.create({
+            url: "./popup/popup.html",
+            type: "popup",
+            width: 400,
+            height: 600
+        })
+        this.popipId = windowId
     }
 }
 
