@@ -22,18 +22,22 @@ const slw = new Controller(listTag, totaisTag)
 
 
 // listeners ==========================================
+// salva as janelas
 btn.addEventListener("click", () =>{
     slw.structureData()
 })
 
+// abre as janelas
 openWindows.addEventListener("click", () =>{
     slw.openWindows()
 })
 
+// limpa os dados
 clearBtn.addEventListener("click", () =>{
     slw.clearTabs()
 })
 
+// apre o popup de edicao
 btnSitesAvailable.addEventListener("click", () =>{
     slw.editSitesAvailable()
 })

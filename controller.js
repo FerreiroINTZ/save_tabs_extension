@@ -5,11 +5,17 @@ import Sounds from "./sons.js"
 class Controller{
 
     states = ["preview", "viewing", "others"]
+    sitesAvailable = []
     popipId = null
 
     constructor(listTag, totaisTag){
         this.listTag = listTag
         this.totaisTag = totaisTag
+        this.getSitesAvailable()
+    }
+
+    x(){
+        console.log(this.sitesAvailable)
     }
 
     // ao atualizar no storage ele atualiza a propriedade do calsse, tambem
@@ -23,7 +29,6 @@ class Controller{
         const {sitesAvailable: data} = await chrome.storage.local.get("sitesAvailable")
         console.log("data", data)
         if(!data){
-            this.sitesAvailable = []
             return []
         }
         this.sitesAvailable = data
@@ -56,14 +61,14 @@ class Controller{
         return tabs
     }
 
-    // lista o poppup com os dados
+    // lista o popup com os dados
     async listTabs(){
         this.listTag.innerHTML = ""
         const {data} = await chrome.storage.local.get("data")
         
         this.totaisTag.innerText = `TOTAL: ${data?.length || 0}`
         
-        if(!data){
+        if(!data || !data.length){
             this.listTag.innerText = "Nao ha Dados Disponiveis!"
             return 
         }
@@ -130,7 +135,7 @@ class Controller{
             const regex2 = /www\.(?<site>\w+)\.\w+/
             // chrome://
             const regex3 = /(?<site>\w+)/
-
+            
             // pega somente o nome do site
             let currRegex = regex3
             if(url.includes("www")){
@@ -139,7 +144,7 @@ class Controller{
                 currRegex = regex1
             }
             const {site} = url.match(currRegex).groups
-
+            
             
             // muda de fase
             switch(site){
@@ -149,11 +154,14 @@ class Controller{
                 case "newtab":
                     currState = 2
             }
-                    
+            
             if(!this.sitesAvailable.includes(site)){
+                console.log(site)
+                console.log(this.sitesAvailable)
+                console.log(!this.sitesAvailable.includes(site))
                 continue
             }
-
+            
             const obj = {
                 site,
                 link,
@@ -161,6 +169,7 @@ class Controller{
                 state: this.states[currState],
             }
             sites.push(obj)
+            console.log("site:")
             console.log(site)
         }
         console.log(sites)

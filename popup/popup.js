@@ -6,16 +6,14 @@ const addItem = document.getElementById("addItem")
 
 const teste = document.getElementById("teste")
 
-// teste!
-teste.addEventListener("click", () =>{
-    console.log("sw")
-    const radNum = Math.ceil(Math.random() * 100)
-    chrome.storage.local.set({slw: radNum})
-})
 
 const slw = new Controller()
 
 
+// teste!
+teste.addEventListener("click", () =>{
+    slw.x()
+})
 
 async function generateList(){
     const sites = await slw.getSitesAvailable()
